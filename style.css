@@ -1,0 +1,85 @@
+html {
+  font-size: inherit;
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+*, *::before, *::after {
+  font-size: inherit;
+  font-family: inherit;
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --yangColor: #d8c21e;
+  --yinColor: #111111;
+  --triad: #a80f5e;
+  --borderRadius: 10px;
+  --animation: .3s ease;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  color: var(--yangColor);
+  background-color: var(--yinColor);
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.canvas {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 50vw;
+  height: 80vh;
+  border-radius: var(--borderRadius);
+  border: 1px solid var(--yangColor);
+}
+
+.container {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  border: 1px solid var(--triad);
+  width: 100%;
+}
+
+.title-container, .tabs-container {
+  flex-grow: 1
+}
+
+.timer-container {
+  flex-grow: 5;
+}
+
+.title {
+  font-size: 48px;
+  text-transform: uppercase;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-evenly;
+  height: 100%;
+  width: 100%;
+  border-radius: var(--borderRadius);
+}
+
+.tab {
+  display: grid;
+  place-items: center;
+  border-radius: inherit;
+  font-size: 24px;
+  height: 100%;
+  width: 30%;
+}
+
+.tab.selected {
+  color: var(--yinColor);
+  background: var(--yangColor);
+}
