@@ -14,9 +14,10 @@ html {
 }
 
 :root {
-  --yangColor: #d8c21e;
-  --yinColor: #111111;
-  --triad: #a80f5e;
+  --color: #d8c21e;
+  --colorSecondary: #a80f5e;
+  --background: #111111;
+  --backgroundSecondary: #282828;
   --borderRadius: 10px;
   --animation: .3s ease;
 }
@@ -24,8 +25,8 @@ html {
 body {
   display: grid;
   place-items: center;
-  color: var(--yangColor);
-  background-color: var(--yinColor);
+  color: var(--color);
+  background-color: var(--background);
   width: 100vw;
   height: 100vh;
   overflow: hidden;
@@ -38,14 +39,14 @@ body {
   width: 50vw;
   height: 80vh;
   border-radius: var(--borderRadius);
-  border: 1px solid var(--yangColor);
+  border: 2px solid var(--color);
+  background: var(--backgroundSecondary);
 }
 
 .container {
   display: flex;
   justify-content: center; 
   align-items: center;
-  border: 1px solid var(--triad);
   width: 100%;
 }
 
@@ -80,6 +81,27 @@ body {
 }
 
 .tab.selected {
-  color: var(--yinColor);
-  background: var(--yangColor);
+  color: var(--background);
+  background: var(--color);
+}
+
+
+.timer {
+  display: grid;
+  place-items: center;
+  width: 200px;
+  height: 200px;
+  background: var(--background);
+  border: 8px solid var(--colorSecondary);
+  border-radius: 50%;
+}
+
+.time-clock {
+  display: flex;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.divider {
+  margin: 0 5px;
 }
