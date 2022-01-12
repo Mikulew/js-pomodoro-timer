@@ -51,7 +51,7 @@ body {
 }
 
 .title-container, .tabs-container {
-  flex-grow: 1
+  flex-grow: 1;
 }
 
 .timer-container {
@@ -85,7 +85,6 @@ body {
   background: var(--color);
 }
 
-
 .timer {
   display: grid;
   place-items: center;
@@ -104,4 +103,12 @@ body {
 
 .divider {
   margin: 0 5px;
+}
+
+.gear {
+  display: grid;
+  place-items: center;
+  font-size: 32px;
+  width: 50px;
+  height: 50px;
 }
