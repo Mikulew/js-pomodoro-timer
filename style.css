@@ -1,16 +1,15 @@
-html {
-  font-size: inherit;
-  font-family: 'Roboto', sans-serif;
-  box-sizing: border-box;
-  user-select: none;
-}
-
 *, *::before, *::after {
   font-size: inherit;
   font-family: inherit;
   box-sizing: inherit;
   margin: 0;
   padding: 0;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
 }
 
 :root {
@@ -111,4 +110,16 @@ body {
   font-size: 32px;
   width: 50px;
   height: 50px;
+}
+
+.action-start-button {
+  padding: 20px 40px;
+  border-radius: var(--borderRadius);
+  border: none;
+  background: var(--color);
+  color: var(--background);
+  margin-bottom: 10px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 700;
 }
