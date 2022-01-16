@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css" />
-    <script src="main.js" defer></script>
+    <script type="module" src="main.js" defer></script>
   </head>
   <body>
     <main class="canvas">
@@ -18,9 +18,9 @@
       </section>
       <section class="container tabs-container">
         <div class="tabs">
-          <div class="tab selected">pomodoro</div>
-          <div class="tab">short break</div>
-          <div class="tab">long break</div>
+          <div class="tab selected" data-tab="POMODORO">pomodoro</div>
+          <div class="tab" data-tab="SHORT_BREAK">short break</div>
+          <div class="tab" data-tab="LONG_BREAK">long break</div>
         </div>
         <div class="gear">
           <span>&#9881;</span>
