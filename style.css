@@ -14,6 +14,7 @@ body {
 
 :root {
   --color: #d8c21e;
+  --disabled: #8f853d;
   --colorSecondary: #a80f5e;
   --background: #111111;
   --backgroundSecondary: #282828;
@@ -123,4 +124,9 @@ body {
   cursor: pointer;
   text-transform: uppercase;
   font-weight: 700;
+}
+
+.action-start-button[disabled] {
+  background: var(--disabled);
+  cursor: not-allowed;
 }
