@@ -18,3 +18,9 @@ export const DEFAULT_TIMER_VALUES = {
     sec: 0,
   },
 };
+
+export const DEFAULT_SOUNDTRACK_PATH = {
+  [TABS.POMODORO]: 'assets/break.mp3',
+  [TABS.SHORT_BREAK]: 'assets/backtowork.mp3',
+  [TABS.LONG_BREAK]: 'assets/backtowork.mp3',
+};
