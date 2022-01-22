@@ -21,7 +21,7 @@ export const changeTimer = (tab) => {
 
 export const initTimer = () => {
   changeTimer(TABS.POMODORO);
-  startBtn.addEventListener('click', () => startTimer());
+  startBtn.addEventListener('click', () => (timer === null) ? startTimer() : null);
 }
 
 const startTimer = () => timer = setInterval(countDown, 1000);
@@ -44,6 +44,7 @@ function countDown() {
       startBtn.disabled = false;
       minutes.innerText = formatValue(initialMinutes);
       seconds.innerText = formatValue(initialSeconds);
+      timer = null;
     }, 2500);
   }
   if (tempSeconds === 0) {
