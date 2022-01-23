@@ -24,3 +24,5 @@ export const DEFAULT_SOUNDTRACK_PATH = {
   [TABS.SHORT_BREAK]: 'assets/backtowork.mp3',
   [TABS.LONG_BREAK]: 'assets/backtowork.mp3',
 };
+
+export const SOUNDTRACK_PLAYING_TIME = 2500;

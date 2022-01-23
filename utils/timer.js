@@ -1,4 +1,9 @@
-import { TABS, DEFAULT_TIMER_VALUES, DEFAULT_SOUNDTRACK_PATH } from '../consts/index.js';
+import {
+  TABS,
+  DEFAULT_TIMER_VALUES,
+  DEFAULT_SOUNDTRACK_PATH,
+  SOUNDTRACK_PLAYING_TIME,
+} from '../consts/index.js';
 
 const startBtn = document.getElementById("start");
 const minutes = document.getElementById('minutes');
@@ -45,7 +50,7 @@ function countDown() {
       minutes.innerText = formatValue(initialMinutes);
       seconds.innerText = formatValue(initialSeconds);
       timer = null;
-    }, 2500);
+    }, SOUNDTRACK_PLAYING_TIME);
   }
   if (tempSeconds === 0) {
     tempSeconds = 59;
