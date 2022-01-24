@@ -32,7 +32,7 @@ body {
   overflow: hidden;
 }
 
-.canvas {
+.app {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -129,4 +129,37 @@ body {
 .action-start-button[disabled] {
   background: var(--disabled);
   cursor: not-allowed;
+}
+
+@media screen and (max-width: 920px) and (min-width: 769px) {
+  .app {
+    width: 75vw;
+    height: 75vh;
+  }
+
+  .title {
+    font-size: 36px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .app {
+    width: 95vw;
+    height: 95vh;
+  }
+
+  .title {
+    font-size: 34px;
+  }
+
+  .tabs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tab {
+    font-size: 24px;
+    width: 90%;
+  }
 }
