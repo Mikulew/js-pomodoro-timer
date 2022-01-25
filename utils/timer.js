@@ -27,13 +27,14 @@ export const changeTimer = (tab) => {
 export const initTimer = () => {
   changeTimer(TABS.POMODORO);
   startBtn.addEventListener('click', () => (timer === null) ? startTimer() : null);
-}
+};
 
 const startTimer = () => timer = setInterval(countDown, 1000);
 
 const restartTimer = () => {
   startBtn.disabled = false;
-  return clearInterval(timer);
+  clearInterval(timer);
+  timer = null;
 };
 
 function countDown() {
