@@ -32,7 +32,8 @@ body {
   overflow: hidden;
 }
 
-.app {
+.container {
+  position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -43,23 +44,39 @@ body {
   background: var(--backgroundSecondary);
 }
 
-.container {
+.container.hide {
+  display: none;
+}
+
+#app {
+  z-index: 1;
+}
+
+#settings {
+  z-index: 2;
+}
+
+.wrapper {
   display: flex;
   justify-content: center; 
   align-items: center;
   width: 100%;
 }
 
-.title-container {
+.title-wrapper {
   position: relative;
 }
 
-.title-container, .tabs-container {
+.title-wrapper, .tabs-wrapper {
   flex-grow: 1;
 }
 
-.timer-container {
+.timer-wrapper {
   flex-grow: 5;
+}
+
+.inputs-wrapper {
+  flex-grow: 12;
 }
 
 .title {
@@ -110,8 +127,10 @@ body {
   margin: 0 5px;
 }
 
-.gear {
+.icon {
   position: absolute;
+  color: var(--color);
+  background: var(--backgroundSecondary);
   right: 10px;
   display: grid;
   place-items: center;
@@ -119,15 +138,16 @@ body {
   width: 50px;
   height: 50px;
   cursor: pointer;
+  border: none;
 }
 
-.gear:hover {
+.icon:hover {
   color: var(--background);
   background: var(--color);
   border-radius: var(--borderRadius);
 }
 
-.action-start-button {
+.action-button {
   padding: 20px 40px;
   border-radius: var(--borderRadius);
   border: none;
@@ -139,13 +159,13 @@ body {
   font-weight: 700;
 }
 
-.action-start-button[disabled] {
+.action-button[disabled] {
   background: var(--disabled);
   cursor: not-allowed;
 }
 
 @media screen and (max-width: 920px) and (min-width: 769px) {
-  .app {
+  .container {
     width: 75vw;
     height: 75vh;
   }
@@ -156,7 +176,7 @@ body {
 }
 
 @media screen and (max-width: 768px) {
-  .app {
+  .container {
     width: 95vw;
     height: 95vh;
   }
@@ -176,7 +196,7 @@ body {
     width: 95%;
   }
 
-  .gear {
+  .icon {
     right: 15px;
   }
 }

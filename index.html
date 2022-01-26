@@ -12,21 +12,21 @@
     <script type="module" src="main.js" defer></script>
   </head>
   <body>
-    <main class="app">
-      <section class="container title-container">
+    <section id="app" class="container">
+      <div class="wrapper title-wrapper">
         <h1 class="title">pomodoro timer</h1>
-        <div class="gear">
+        <button id="settingsButton" class="icon">
           <span>&#9881;</span>
-        </div>  
-      </section>
-      <section class="container tabs-container">
+        </button>  
+      </div>
+      <div class="wrapper tabs-wrapper">
         <div class="tabs">
           <div class="tab selected" data-tab="POMODORO">pomodoro</div>
           <div class="tab" data-tab="SHORT_BREAK">short break</div>
           <div class="tab" data-tab="LONG_BREAK">long break</div>
         </div>
-      </section>
-      <section class="container timer-container">
+      </div>
+      <div class="wrapper timer-wrapper">
         <div class="timer">
           <div class="time-clock">
             <span id="minutes">--</span>
@@ -34,10 +34,27 @@
             <span id="seconds">--</span>
           </div>
         </div>
+      </div>
+      <div class="wrapper action-wrapper">
+        <button id="start" class="action-button">start</button>
+      </div>
+    </section>
+
+    <section id="settings" class="container hide">
+      <section class="wrapper title-wrapper">
+        <h1 class="title">settings</h1>
+        <button id="closeButton" class="icon">
+          <span>&#10006;</span>
+        </button>  
       </section>
-      <section class="container action-container">
-        <button id="start" class="action-start-button">start</button>
-      </section>
-    </main>
+      <div class="wrapper inputs-wrapper">
+        <div class="inputs">
+          <p class="title">TO DO</p>
+        </div>
+      </div>
+      <div class="wrapper action-wrapper">
+        <button id="save" class="action-button">save</button>
+      </div>
+    </section>
   </body>
 </html>
