@@ -42,14 +42,38 @@
 
     <section id="settings" class="container hide">
       <section class="wrapper title-wrapper">
-        <h1 class="title">settings</h1>
+        <h1 class="title">timer settings</h1>
         <button id="closeButton" class="icon">
           <span>&#10006;</span>
         </button>  
       </section>
-      <div class="wrapper inputs-wrapper">
-        <div class="inputs">
-          <p class="title">TO DO</p>
+      <div class="wrapper form-wrapper">
+        <div class="inputs-wrapper">
+          <p class="form-title">Pomodoro:</p>
+          <div class="inputs">
+            <label class="label" for="pomidoro-minutes">Minutes</label>
+            <input class="input" id="pomidoro-minutes" type="number" min="0" />
+            <label class="label" for="pomidoro-seconds">Seconds</label>
+            <input class="input" id="pomidoro-seconds" type="number" min="0" />
+          </div>
+        </div>
+        <div class="inputs-wrapper">
+          <p class="form-title">Short break:</p>
+          <div class="inputs">
+            <label class="label" for="short-break-minutes">Minutes</label>
+            <input class="input" id="short-break-minutes" type="number" min="0" />
+            <label class="label" for="short-break-seconds">Seconds</label>
+            <input class="input" id="short-break-seconds" type="number" min="0" />
+          </div>
+        </div>
+        <div class="inputs-wrapper">
+          <p class="form-title">Long break:</p>
+          <div class="inputs">
+            <label class="label" for="long-break-minutes">Minutes</label>
+            <input class="input" id="long-break-minutes" type="number" min="0" />
+            <label class="label" for="long-break-seconds">Seconds</label>
+            <input class="input" id="long-break-seconds" type="number" min="0" />
+          </div>
         </div>
       </div>
       <div class="wrapper action-wrapper">
