@@ -67,7 +67,7 @@ body {
   position: relative;
 }
 
-.title-wrapper, .tabs-wrapper {
+.title-wrapper, .tabs-wrapper, .action-wrapper {
   flex-grow: 1;
 }
 
@@ -75,8 +75,10 @@ body {
   flex-grow: 5;
 }
 
-.inputs-wrapper {
-  flex-grow: 12;
+.form-wrapper {
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-grow: 6;
 }
 
 .title {
@@ -164,6 +166,38 @@ body {
   cursor: not-allowed;
 }
 
+.inputs-wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.input-title {
+  font-size: 20px;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  margin: 5px 0;
+  padding: 5px 5px 5px 10px;
+  border-radius: var(--borderRadius);
+  background: var(--color);
+  border: none;
+}
+
+.input-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 275px;
+}
+
 @media screen and (max-width: 920px) and (min-width: 769px) {
   .container {
     width: 75vw;
@@ -198,5 +232,9 @@ body {
 
   .icon {
     right: 15px;
+  }
+
+  .inputs-wrapper {
+    flex-direction: column;
   }
 }
