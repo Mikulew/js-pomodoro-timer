@@ -1,6 +1,9 @@
-import { NOT_ALLOWED_CHARACTERS } from '../consts/index.js';
+import { DEFAULT_TIMER_VALUES, NOT_ALLOWED_CHARACTERS } from '../consts/index.js';
+import { initTimer, getTimers } from '../utils/timer.js';
+import { initTabs } from '../utils/tabs.js';
 
 const settings = document.getElementById('settings');
+const settingsButton = document.getElementById('settingsButton');
 const closeButton = document.getElementById('closeButton');
 const saveButton = document.getElementById('save');
 const pomodoroMinutes = document.getElementById('pomodoro-minutes');
@@ -10,6 +13,9 @@ const shortBreakSeconds = document.getElementById('short-break-seconds');
 const longBreakMinutes = document.getElementById('long-break-minutes');
 const longBreakSeconds = document.getElementById('long-break-seconds');
 const inputs = [pomodoroMinutes, pomodoroSeconds, shortBreakMinutes, shortBreakSeconds, longBreakMinutes, longBreakSeconds];
+const errorText = document.getElementById('error-text');
+
+export const initSettings = () => settingsButton.addEventListener('click', () => toggleSettings());
 
 const toggleSettings = () => {
   if (settings.classList.contains('hide')) {
@@ -26,12 +32,38 @@ const validateAllowedCharacters = e => {
   return null;
 };
 
+const validateInputs = inputs => {
+  const timers = Object.values(getTimers(inputs));
+  return !timers.some(timer => timer.minutes === 0 && timer.seconds === 0);
+}
+
+const storeValues = input => {
+  const { name, value } = input;
+  localStorage.setItem(name, value === '' ? 0 : value);
+};
+
+const setDefaultValue = input => {
+  const { name, typeDigit } = input.dataset;
+  return DEFAULT_TIMER_VALUES[name][typeDigit];
+};
+
 closeButton.addEventListener('click', () => settings.classList.add('hide'));
 
-saveButton.addEventListener('click', () => console.log('save – to do'));
+saveButton.addEventListener('click', () => {
+  errorText.innerText = '';
+  if (validateInputs(inputs)) {
+    inputs.forEach(input => storeValues(input));
+    settings.classList.add('hide');
+    initTabs();
+    initTimer();
+  } else {
+    errorText.innerText = 'Timer cannot start with zero values';
+  }
+});
 
 inputs.forEach(input => {
   input.addEventListener('keypress', validateAllowedCharacters);
+  input.value = setDefaultValue(input);
 });
 
 export default toggleSettings;

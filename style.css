@@ -189,6 +189,7 @@ body {
   border-radius: var(--borderRadius);
   background: var(--color);
   border: none;
+  width: 70%;
 }
 
 .input-wrapper {
@@ -196,6 +197,11 @@ body {
   justify-content: space-between;
   align-items: center;
   min-width: 275px;
+}
+
+.error {
+  margin-top: 5px;
+  color: var(--colorSecondary);
 }
 
 @media screen and (max-width: 920px) and (min-width: 769px) {

@@ -1,6 +1,14 @@
 import { TABS } from '../consts/index.js';
 import { changeTimer } from './timer.js';
 
+const tabs = document.querySelectorAll('.tab');
+
+tabs.forEach((tab, index) => {
+  tab.addEventListener('click', () => handleTabClick(tabs, index));
+});
+
+export const initTabs = () => activateTab(tabs, TABS.POMODORO);
+
 export const handleTabClick = (elements, index) => {
   const element = elements[index];
 

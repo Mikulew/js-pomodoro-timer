@@ -59,8 +59,12 @@
               <input
                 class="input"
                 id="pomodoro-minutes"
+                name="pomodoroMinutes"
+                data-name="POMODORO"
+                data-type-digit="minutes"
                 type="number"
                 min="0"
+                max="1440"
               />
             </div>
             <div class="input-wrapper">
@@ -68,8 +72,12 @@
               <input
                 class="input"
                 id="pomodoro-seconds"
+                name="pomodoroSeconds"
+                data-name="POMODORO"
+                data-type-digit="seconds"
                 type="number"
                 min="0"
+                max="59"
               />
             </div>
           </div>
@@ -82,8 +90,12 @@
               <input
                 class="input"
                 id="short-break-minutes"
+                name="shortBreakMinutes"
+                data-name="SHORT_BREAK"
+                data-type-digit="minutes"
                 type="number"
                 min="0"
+                max="1440"
               />
             </div>
             <div class="input-wrapper">
@@ -91,8 +103,12 @@
               <input
                 class="input"
                 id="short-break-seconds"
+                name="shortBreakSeconds"
+                data-name="SHORT_BREAK"
+                data-type-digit="seconds"
                 type="number"
                 min="0"
+                max="59"
               />
             </div>
           </div>
@@ -105,8 +121,12 @@
               <input
                 class="input"
                 id="long-break-minutes"
+                name="longBreakMinutes"
+                data-name="LONG_BREAK"
+                data-type-digit="minutes"
                 type="number"
                 min="0"
+                max="1440"
               />
             </div>
             <div class="input-wrapper">
@@ -114,12 +134,17 @@
               <input
                 class="input"
                 id="long-break-seconds"
+                name="longBreakSeconds"
+                data-name="LONG_BREAK"
+                data-type-digit="seconds"
                 type="number"
                 min="0"
+                max="59"
               />
             </div>
           </div>
         </div>
+        <p id="error-text" class="error"></p>
       </div>
       <div class="wrapper action-wrapper">
         <button id="save" class="action-button">save</button>

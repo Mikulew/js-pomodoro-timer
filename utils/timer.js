@@ -1,6 +1,7 @@
 import {
   TABS,
   DEFAULT_TIMER_VALUES,
+  LOCAL_STORAGE_VALUES,
   DEFAULT_SOUNDTRACK_PATH,
   SOUNDTRACK_PLAYING_TIME,
 } from '../consts/index.js';
@@ -16,10 +17,11 @@ let initialSeconds = null;
 const formatValue = (number) => number < 10 ? `0${number}` : number;
 
 export const changeTimer = (tab) => {
-  minutes.innerText = formatValue(DEFAULT_TIMER_VALUES[tab].min);
-  seconds.innerText = formatValue(DEFAULT_TIMER_VALUES[tab].sec);
-  initialMinutes = DEFAULT_TIMER_VALUES[tab].min;
-  initialSeconds = DEFAULT_TIMER_VALUES[tab].sec;
+  const isLocaleStorage = (localStorage.getItem(LOCAL_STORAGE_VALUES[tab].minutes) !== null) && (localStorage.getItem(LOCAL_STORAGE_VALUES[tab].seconds) !== null);
+  minutes.innerText = isLocaleStorage ? formatValue(localStorage.getItem(LOCAL_STORAGE_VALUES[tab].minutes)) : formatValue(DEFAULT_TIMER_VALUES[tab].minutes);
+  seconds.innerText = isLocaleStorage ? formatValue(localStorage.getItem(LOCAL_STORAGE_VALUES[tab].seconds)) : formatValue(DEFAULT_TIMER_VALUES[tab].seconds);
+  initialMinutes = isLocaleStorage ? localStorage.getItem(LOCAL_STORAGE_VALUES[tab].minutes) : DEFAULT_TIMER_VALUES[tab].minutes;
+  initialSeconds = isLocaleStorage ? localStorage.getItem(LOCAL_STORAGE_VALUES[tab].seconds) : DEFAULT_TIMER_VALUES[tab].seconds;
   audioElement = new Audio(DEFAULT_SOUNDTRACK_PATH[tab]);
   restartTimer();
 };
@@ -62,3 +64,11 @@ function countDown() {
   minutes.innerText = formatValue(tempMinutes);
   seconds.innerText = formatValue(tempSeconds);
 }
+
+export const getTimers = inputs => inputs.reduce((accumulator, input) => {
+  const { name, typeDigit } = input.dataset;
+  const value = input.value === '' ? 0 : Number.parseInt(input.value);
+  if (accumulator[name] === undefined) accumulator[name] = {};
+  if (accumulator[name][typeDigit] === undefined) accumulator[name][typeDigit] = value;
+  return accumulator;
+}, {});

@@ -6,16 +6,31 @@ export const TABS = {
 
 export const DEFAULT_TIMER_VALUES = {
   [TABS.POMODORO]: {
-    min: 30,
-    sec: 0,
+    minutes: 30,
+    seconds: 0,
   },
   [TABS.SHORT_BREAK]: {
-    min: 5,
-    sec: 0,
+    minutes: 5,
+    seconds: 0,
   },
   [TABS.LONG_BREAK]: {
-    min: 15,
-    sec: 0,
+    minutes: 15,
+    seconds: 0,
+  },
+};
+
+export const LOCAL_STORAGE_VALUES = {
+  [TABS.POMODORO]: {
+    minutes: 'pomodoroMinutes',
+    seconds: 'pomodoroSeconds',
+  },
+  [TABS.SHORT_BREAK]: {
+    minutes: 'shortBreakMinutes',
+    seconds: 'shortBreakSeconds',
+  },
+  [TABS.LONG_BREAK]: {
+    minutes: 'longBreakMinutes',
+    seconds: 'longBreakSeconds',
   },
 };
 
