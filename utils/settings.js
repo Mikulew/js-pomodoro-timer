@@ -1,4 +1,8 @@
-import { DEFAULT_TIMER_VALUES, NOT_ALLOWED_CHARACTERS } from '../consts/index.js';
+import {
+  DEFAULT_TIMER_VALUES,
+  LOCAL_STORAGE_VALUES,
+  NOT_ALLOWED_CHARACTERS,
+} from '../consts/index.js';
 import { initTimer, getTimers } from '../utils/timer.js';
 import { initTabs } from '../utils/tabs.js';
 
@@ -44,7 +48,8 @@ const storeValues = input => {
 
 const setDefaultValue = input => {
   const { name, typeDigit } = input.dataset;
-  return DEFAULT_TIMER_VALUES[name][typeDigit];
+  const isLocaleStorage = (localStorage.getItem(LOCAL_STORAGE_VALUES[name].minutes) !== null) && (localStorage.getItem(LOCAL_STORAGE_VALUES[name].seconds) !== null);
+  return isLocaleStorage ? localStorage.getItem(LOCAL_STORAGE_VALUES[name][typeDigit]) : DEFAULT_TIMER_VALUES[name][typeDigit];
 };
 
 closeButton.addEventListener('click', () => settings.classList.add('hide'));
