@@ -44,7 +44,7 @@ const validateInputs = inputs => {
     errors.push('Timer cannot start with zero values');
   }
   if (timers.some(timer => timer.minutes > 1440 || timer.seconds > 59)) {
-    errors.push('Minutes cannot exceed 1440 and seconds 60');
+    errors.push('Minutes cannot exceed 1440 (minutes) or 59 (seconds)');
   }
   if (errors.length !== 0) {
     errorMessage.style.display = 'visible';
