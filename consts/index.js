@@ -42,4 +42,4 @@ export const DEFAULT_SOUNDTRACK_PATH = {
 
 export const SOUNDTRACK_PLAYING_TIME = 2500;
 
-export const NOT_ALLOWED_CHARACTERS = ['-', 'e', 'E', '+'];
+export const NOT_ALLOWED_CHARACTERS = ['-', 'e', 'E', '+', '.'];

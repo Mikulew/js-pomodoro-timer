@@ -202,6 +202,7 @@ body {
 .error {
   margin-top: 5px;
   color: var(--colorSecondary);
+  text-align: center;
 }
 
 @media screen and (max-width: 920px) and (min-width: 769px) {
