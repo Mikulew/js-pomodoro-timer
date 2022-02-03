@@ -5,6 +5,7 @@ import {
   DEFAULT_SOUNDTRACK_PATH,
   SOUNDTRACK_PLAYING_TIME,
 } from '../consts/index.js';
+import { checkIsLocaleStored } from '../utils/validation.js';
 
 const startBtn = document.getElementById("start");
 const minutes = document.getElementById('minutes');
@@ -17,11 +18,11 @@ let initialSeconds = null;
 const formatValue = (number) => number < 10 ? `0${number}` : number;
 
 export const changeTimer = (tab) => {
-  const isLocaleStorage = (localStorage.getItem(LOCAL_STORAGE_VALUES[tab].minutes) !== null) && (localStorage.getItem(LOCAL_STORAGE_VALUES[tab].seconds) !== null);
-  minutes.innerText = isLocaleStorage ? formatValue(localStorage.getItem(LOCAL_STORAGE_VALUES[tab].minutes)) : formatValue(DEFAULT_TIMER_VALUES[tab].minutes);
-  seconds.innerText = isLocaleStorage ? formatValue(localStorage.getItem(LOCAL_STORAGE_VALUES[tab].seconds)) : formatValue(DEFAULT_TIMER_VALUES[tab].seconds);
-  initialMinutes = isLocaleStorage ? localStorage.getItem(LOCAL_STORAGE_VALUES[tab].minutes) : DEFAULT_TIMER_VALUES[tab].minutes;
-  initialSeconds = isLocaleStorage ? localStorage.getItem(LOCAL_STORAGE_VALUES[tab].seconds) : DEFAULT_TIMER_VALUES[tab].seconds;
+  const hasLocaleStorage = checkIsLocaleStored(tab);
+  minutes.innerText = hasLocaleStorage ? formatValue(localStorage.getItem(LOCAL_STORAGE_VALUES[tab].minutes)) : formatValue(DEFAULT_TIMER_VALUES[tab].minutes);
+  seconds.innerText = hasLocaleStorage ? formatValue(localStorage.getItem(LOCAL_STORAGE_VALUES[tab].seconds)) : formatValue(DEFAULT_TIMER_VALUES[tab].seconds);
+  initialMinutes = hasLocaleStorage ? localStorage.getItem(LOCAL_STORAGE_VALUES[tab].minutes) : DEFAULT_TIMER_VALUES[tab].minutes;
+  initialSeconds = hasLocaleStorage ? localStorage.getItem(LOCAL_STORAGE_VALUES[tab].seconds) : DEFAULT_TIMER_VALUES[tab].seconds;
   audioElement = new Audio(DEFAULT_SOUNDTRACK_PATH[tab]);
   restartTimer();
 };
