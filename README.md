@@ -5,7 +5,7 @@
 - [General info](#general-info)
 - [Technologies](#technologies)
 - [Demo](#demo)
-- [Articles](#articles)
+- [Resources](#resources)
 
 ## General info
 
@@ -23,7 +23,7 @@ The technique has been widely popularized by dozens of apps and websites providi
 
 - [see here](https://mikulew.github.io/js-pomodoro-timer/)
 
-# Articles
+# Resources
 
 - [How to build a Pomodoro Timer App with JavaScript](https://freshman.tech/pomodoro-timer/)
 - [Build a Pomodoro Timer using HTML, CSS, and JavaScript](https://theintrovertcoder.hashnode.dev/build-a-pomodoro-timer-using-html-css-and-javascript)
@@ -31,4 +31,9 @@ The technique has been widely popularized by dozens of apps and websites providi
 - [Coding a Pomodoro Timer in HTML/JS/CSS](https://david-jordan.medium.com/coding-a-pomodoro-timer-in-html-js-css-61b5b89b5948)
 - [[TUTORIAL] Create a Pomodoro Clock with JavaScript](https://dev.to/albertomontalesi/tutorial-create-a-pomodoro-clock-with-javascript-13om)
 - [Creating a Pomodoro Timer in JavaScript in 10 Lines of Code](https://levelup.gitconnected.com/creating-a-pomodoro-timer-in-javascript-in-10-lines-of-code-868f577be63c)
-- [Stackoverflow: Pomodoro Timer goes negative and counts up](https://stackoverflow.com/questions/69684206/pomodoro-timer-goes-negative-and-counts-up) -[Stackoverflow: input number max attribute resizes field](https://stackoverflow.com/questions/33283901/input-number-max-attribute-resizes-field)
+- [Stackoverflow: Pomodoro Timer goes negative and counts up](https://stackoverflow.com/questions/69684206/pomodoro-timer-goes-negative-and-counts-up)
+- [Foolish Developer: Circular Progress Bar using HTML, CSS and JavaScript](https://www.foolishdeveloper.com/2021/08/circular-progress-bar.html)
+- [Dotted Squirrel: How To Create A Circular Progress Bar using HTML CSS & Simple JavaScript](https://www.dottedsquirrel.com/circular-progress-css/)
+- [Coding Artist: Dynamic Circular Progress Bar | CSS & Javascript | With Source Code](https://www.youtube.com/watch?v=YDgw6HjMCoQ)
+- [Easy Tutorials: How To Make Circular Progress Bar Using HTML CSS JavaScript | Neomorphism Progress Bar](https://www.youtube.com/watch?v=mSfsGTIQlxg)
+- [Stackoverflow: input number max attribute resizes field](https://stackoverflow.com/questions/33283901/input-number-max-attribute-resizes-field)
