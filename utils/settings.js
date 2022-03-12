@@ -60,5 +60,3 @@ inputs.forEach(input => {
   input.addEventListener('keypress', validateAllowedCharacters);
   input.value = setDefaultValue(input);
 });
-
-export default toggleSettings;
