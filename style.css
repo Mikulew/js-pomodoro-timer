@@ -1,4 +1,6 @@
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   font-size: inherit;
   font-family: inherit;
   box-sizing: inherit;
@@ -19,7 +21,7 @@ body {
   --background: #111111;
   --backgroundSecondary: #282828;
   --borderRadius: 10px;
-  --animation: .3s ease;
+  --animation: 0.3s ease;
 }
 
 body {
@@ -58,7 +60,7 @@ body {
 
 .wrapper {
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
   width: 100%;
 }
@@ -67,8 +69,16 @@ body {
   position: relative;
 }
 
-.title-wrapper, .tabs-wrapper, .action-wrapper {
+.title-wrapper {
+  flex-basis: 75px;
+}
+
+.tabs-wrapper {
   flex-grow: 1;
+}
+
+.action-wrapper  {
+  flex-basis: 100px;
 }
 
 .timer-wrapper {
