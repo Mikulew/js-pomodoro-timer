@@ -70,25 +70,25 @@ body {
 }
 
 .title-wrapper {
-  flex-basis: 75px;
+  flex: 0 0 75px;
 }
 
 .tabs-wrapper {
-  flex-grow: 1;
+  flex: 1 0 30px;
 }
 
 .action-wrapper  {
-  flex-basis: 100px;
+  flex: 0 0 100px;
 }
 
 .timer-wrapper {
-  flex-grow: 5;
+  flex: 5 0 auto;
 }
 
 .form-wrapper {
   flex-direction: column;
   justify-content: flex-start;
-  flex-grow: 6;
+  flex: 5 0 auto;
 }
 
 .title {
