@@ -215,7 +215,7 @@ body {
   text-align: center;
 }
 
-@media screen and (max-width: 920px) and (min-width: 769px) {
+@media screen and (max-width: 920px) and (min-width: 769px)  and (orientation: portrait) {
   .container {
     width: 75vw;
     height: 75vh;
@@ -226,7 +226,7 @@ body {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) and (orientation: portrait) {
   .container {
     width: 95vw;
     height: 95vh;
@@ -253,5 +253,14 @@ body {
 
   .inputs-wrapper {
     flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 920px) and (orientation: landscape) {
+  .container {
+    overflow-x: auto;
+    justify-content: flex-start;
+    height: 98vh;
+    min-width: 85vw;
   }
 }
