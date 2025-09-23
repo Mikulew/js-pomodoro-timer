@@ -161,11 +161,21 @@ body {
 
 .action-button {
   padding: 20px 40px;
+  margin: 0 10px 10px 10px;
   border-radius: var(--borderRadius);
   border: none;
   background: var(--color);
   color: var(--background);
-  margin-bottom: 10px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.action-button.secondary {
+  border-radius: var(--borderRadius);
+  border: 3px solid var(--colorSecondary);
+  background: var(--background);
+  color: var(--color);
   cursor: pointer;
   text-transform: uppercase;
   font-weight: 700;

@@ -15,6 +15,7 @@ const settings = document.getElementById('settings');
 const settingsButton = document.getElementById('settingsButton');
 const closeButton = document.getElementById('closeButton');
 const saveButton = document.getElementById('save');
+const resetSettingsButton = document.getElementById('resetSettings');
 const pomodoroMinutes = document.getElementById('pomodoro-minutes');
 const pomodoroSeconds = document.getElementById('pomodoro-seconds');
 const shortBreakMinutes = document.getElementById('short-break-minutes');
@@ -54,6 +55,14 @@ saveButton.addEventListener('click', () => {
   } else {
     displayErrors();
   }
+});
+
+resetSettingsButton.addEventListener('click', () => {
+  localStorage.clear();
+  inputs.forEach(input => {
+    const { name, typeDigit } = input.dataset;
+    input.value = DEFAULT_TIMER_VALUES[name][typeDigit];
+  });
 });
 
 inputs.forEach(input => {
