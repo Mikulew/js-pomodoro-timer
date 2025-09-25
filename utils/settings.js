@@ -1,6 +1,7 @@
 import {
   DEFAULT_TIMER_VALUES,
   LOCAL_STORAGE_VALUES,
+  LEADING_ZEROS,
 } from '../consts/index.js';
 import { initTimer } from '../utils/timer.js';
 import { initTabs } from '../utils/tabs.js';
@@ -36,7 +37,14 @@ const toggleSettings = () => {
 
 const storeValues = input => {
   const { name, value } = input;
-  localStorage.setItem(name, value === '' ? 0 : value);
+  localStorage.setItem(name, formatValue(value));
+};
+
+const formatValue = (value) => {
+  if (value === '') {
+    return 0;
+  }
+  return value.replace(LEADING_ZEROS, '');
 };
 
 const setDefaultValue = input => {
