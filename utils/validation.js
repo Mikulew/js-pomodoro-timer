@@ -1,5 +1,5 @@
 import { NOT_ALLOWED_CHARACTERS, LOCAL_STORAGE_VALUES } from '../consts/index.js';
-import { getTimers } from '../utils/timer.js';
+import { getTimers } from './timer.js';
 
 const errorMessage = document.getElementById('error-message');
 let errors = [];

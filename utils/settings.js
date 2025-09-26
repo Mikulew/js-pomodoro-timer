@@ -3,14 +3,14 @@ import {
   LOCAL_STORAGE_VALUES,
   LEADING_ZEROS,
 } from '../consts/index.js';
-import { initTimer } from '../utils/timer.js';
-import { initTabs } from '../utils/tabs.js';
+import { initTimer } from './timer.js';
+import { initTabs } from './tabs.js';
 import {
   validateAllowedCharacters,
   validateInputs,
   displayErrors,
   checkIsLocaleStored,
-} from '../utils/validation.js';
+} from './validation.js';
 
 const settings = document.getElementById('settings');
 const settingsButton = document.getElementById('settingsButton');

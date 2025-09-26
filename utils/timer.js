@@ -5,7 +5,7 @@ import {
   DEFAULT_SOUNDTRACK_PATH,
   SOUNDTRACK_PLAYING_TIME,
 } from '../consts/index.js';
-import { checkIsLocaleStored } from '../utils/validation.js';
+import { checkIsLocaleStored } from './validation.js';
 
 const startBtn = document.getElementById("start");
 const minutes = document.getElementById('minutes');
