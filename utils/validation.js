@@ -14,11 +14,11 @@ export const validateInputs = inputs => {
     errors.push('Minutes cannot exceed 1440 (minutes) or 59 (seconds)');
   }
   if (errors.length !== 0) {
-    errorMessage.style.display = 'visible';
+    errorMessage.style.display = 'block';
     return false;
   }
   errorMessage.style.display = 'none';
-  return true;;
+  return true;
 }
 
 export const displayErrors = () => {

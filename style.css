@@ -3,7 +3,6 @@
 *::after {
   font-size: inherit;
   font-family: inherit;
-  box-sizing: inherit;
   margin: 0;
   padding: 0;
   user-select: none;
@@ -101,13 +100,15 @@ body {
   justify-content: space-evenly;
   height: 100%;
   width: 100%;
-  border-radius: var(--borderRadius);
 }
 
 .tab {
+  color: var(--color);
+  background: var(--background);
+  border: none;
   display: grid;
   place-items: center;
-  border-radius: inherit;
+  border-radius: var(--borderRadius);
   font-size: 24px;
   height: 100%;
   width: 30%;
@@ -276,6 +277,8 @@ body {
   .tab {
     font-size: 24px;
     width: 95%;
+    min-height: 40px;
+    margin: 5px 0;
   }
 
   .icon {

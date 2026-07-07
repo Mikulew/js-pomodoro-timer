@@ -25,14 +25,12 @@ const longBreakMinutes = document.getElementById('long-break-minutes');
 const longBreakSeconds = document.getElementById('long-break-seconds');
 const inputs = [pomodoroMinutes, pomodoroSeconds, shortBreakMinutes, shortBreakSeconds, longBreakMinutes, longBreakSeconds];
 
-export const initSettings = () => settingsButton.addEventListener('click', () => toggleSettings());
+export const initSettings = () => {
+  settingsButton.addEventListener('click', () => toggleSettings());
+};
 
 const toggleSettings = () => {
-  if (settings.classList.contains('hide')) {
-    settings.classList.remove('hide');
-  } else {
-    settings.classList.add('hide');
-  }
+  settings.classList.toggle('hide');
 };
 
 const storeValues = input => {
