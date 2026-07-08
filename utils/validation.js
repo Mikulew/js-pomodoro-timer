@@ -25,7 +25,7 @@ export const displayErrors = () => {
   while (errorMessage.lastElementChild) {
     errorMessage.removeChild(errorMessage.lastElementChild);
   }
-  errors.map(error => {
+  errors.forEach(error => {
     let element = document.createElement('p');
     element.innerText = error;
     errorMessage.appendChild(element);

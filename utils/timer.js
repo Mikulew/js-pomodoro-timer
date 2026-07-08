@@ -10,10 +10,14 @@ import { checkIsLocaleStored } from './validation.js';
 const startBtn = document.getElementById("start");
 const minutes = document.getElementById('minutes');
 const seconds = document.getElementById('seconds');
+const audio = Object.entries(DEFAULT_SOUNDTRACK_PATH).reduce((result, [tab, path]) => {
+  result[tab] = new Audio(path);
+  return result;
+}, {});
 let timer = null;
-let audioElement = null;
 let initialMinutes = null;
 let initialSeconds = null;
+let activeTab = TABS.POMODORO;
 
 const formatValue = (number) => number < 10 ? `0${number}` : number;
 
@@ -23,7 +27,7 @@ export const changeTimer = (tab) => {
   seconds.innerText = hasLocaleStorage ? formatValue(localStorage.getItem(LOCAL_STORAGE_VALUES[tab].seconds)) : formatValue(DEFAULT_TIMER_VALUES[tab].seconds);
   initialMinutes = hasLocaleStorage ? localStorage.getItem(LOCAL_STORAGE_VALUES[tab].minutes) : DEFAULT_TIMER_VALUES[tab].minutes;
   initialSeconds = hasLocaleStorage ? localStorage.getItem(LOCAL_STORAGE_VALUES[tab].seconds) : DEFAULT_TIMER_VALUES[tab].seconds;
-  audioElement = new Audio(DEFAULT_SOUNDTRACK_PATH[tab]);
+  activeTab = tab;
   restartTimer();
 };
 
@@ -47,7 +51,8 @@ function countDown() {
   if (tempMinutes === 0 && tempSeconds === 0) {
     minutes.innerText = formatValue(tempMinutes);
     seconds.innerText = formatValue(tempSeconds);
-    audioElement.play();
+    audio[activeTab].currentTime = 0;
+    audio[activeTab].play();
     clearInterval(timer);
     return setTimeout(() => {
       startBtn.disabled = false;
