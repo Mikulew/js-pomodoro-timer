@@ -1,7 +1,12 @@
-import { NOT_ALLOWED_CHARACTERS, LOCAL_STORAGE_VALUES } from '../consts/index.js';
+import {
+  NOT_ALLOWED_CHARACTERS,
+  LOCAL_STORAGE_VALUES,
+  HTML_ELEMENTS,
+} from '../consts/index.js';
 import { getTimers } from './timer.js';
+import { getHTMLElement } from './DOM.js';
 
-const errorMessage = document.getElementById('error-message');
+const errorMessage = getHTMLElement(HTML_ELEMENTS.ERROR_MESSAGE);
 let errors = [];
 
 export const validateInputs = inputs => {

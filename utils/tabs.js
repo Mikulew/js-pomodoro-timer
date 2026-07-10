@@ -1,7 +1,8 @@
-import { TABS } from '../consts/index.js';
+import { TABS, HTML_ELEMENTS } from '../consts/index.js';
 import { changeTimer } from './timer.js';
+import { getHTMLElement } from './DOM.js';
 
-const tabs = document.querySelectorAll('.tab');
+const tabs = getHTMLElement(HTML_ELEMENTS.TABS);
 
 tabs.forEach((tab, index) => {
   tab.addEventListener('click', () => handleTabClick(tabs, index));
@@ -12,7 +13,7 @@ export const initTabs = () => activateTab(tabs, TABS.POMODORO);
 export const handleTabClick = (elements, index) => {
   const element = elements[index];
 
-  switch(element.dataset.tab) {
+  switch (element.dataset.tab) {
     case TABS.POMODORO:
       activateTab(elements, TABS.POMODORO);
       changeTimer(TABS.POMODORO);

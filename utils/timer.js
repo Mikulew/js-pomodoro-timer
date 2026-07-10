@@ -4,12 +4,16 @@ import {
   LOCAL_STORAGE_VALUES,
   DEFAULT_SOUNDTRACK_PATH,
   SOUNDTRACK_PLAYING_TIME,
+  HTML_ELEMENTS
 } from '../consts/index.js';
 import { checkIsLocaleStored } from './validation.js';
+import { getHTMLElement } from './DOM.js';
 
-const startBtn = document.getElementById("start");
-const minutes = document.getElementById('minutes');
-const seconds = document.getElementById('seconds');
+const DOM = {
+  startButton: getHTMLElement(HTML_ELEMENTS.START_BUTTON),
+  minutes: getHTMLElement(HTML_ELEMENTS.MINUTES_BLOCK),
+  seconds: getHTMLElement(HTML_ELEMENTS.SECONDS_BLOCK),
+};
 const audio = Object.entries(DEFAULT_SOUNDTRACK_PATH).reduce((result, [tab, path]) => {
   result[tab] = new Audio(path);
   return result;
@@ -23,8 +27,8 @@ const formatValue = (number) => number < 10 ? `0${number}` : number;
 
 export const changeTimer = (tab) => {
   const hasLocaleStorage = checkIsLocaleStored(tab);
-  minutes.innerText = hasLocaleStorage ? formatValue(localStorage.getItem(LOCAL_STORAGE_VALUES[tab].minutes)) : formatValue(DEFAULT_TIMER_VALUES[tab].minutes);
-  seconds.innerText = hasLocaleStorage ? formatValue(localStorage.getItem(LOCAL_STORAGE_VALUES[tab].seconds)) : formatValue(DEFAULT_TIMER_VALUES[tab].seconds);
+  DOM.minutes.innerText = hasLocaleStorage ? formatValue(localStorage.getItem(LOCAL_STORAGE_VALUES[tab].minutes)) : formatValue(DEFAULT_TIMER_VALUES[tab].minutes);
+  DOM.seconds.innerText = hasLocaleStorage ? formatValue(localStorage.getItem(LOCAL_STORAGE_VALUES[tab].seconds)) : formatValue(DEFAULT_TIMER_VALUES[tab].seconds);
   initialMinutes = hasLocaleStorage ? localStorage.getItem(LOCAL_STORAGE_VALUES[tab].minutes) : DEFAULT_TIMER_VALUES[tab].minutes;
   initialSeconds = hasLocaleStorage ? localStorage.getItem(LOCAL_STORAGE_VALUES[tab].seconds) : DEFAULT_TIMER_VALUES[tab].seconds;
   activeTab = tab;
@@ -33,13 +37,13 @@ export const changeTimer = (tab) => {
 
 export const initTimer = () => {
   changeTimer(TABS.POMODORO);
-  startBtn.addEventListener('click', () => (timer === null) ? startTimer() : null);
+  DOM.startButton.addEventListener('click', () => (timer === null) ? startTimer() : null);
 };
 
 const startTimer = () => timer = setInterval(countDown, 1000);
 
 const restartTimer = () => {
-  startBtn.disabled = false;
+  DOM.startButton.disabled = false;
   clearInterval(timer);
   timer = null;
 };
@@ -47,17 +51,17 @@ const restartTimer = () => {
 function countDown() {
   let tempMinutes = Number.parseInt(minutes.innerText);
   let tempSeconds = Number.parseInt(seconds.innerText);
-  startBtn.disabled = true;
+  DOM.startButton.disabled = true;
   if (tempMinutes === 0 && tempSeconds === 0) {
-    minutes.innerText = formatValue(tempMinutes);
-    seconds.innerText = formatValue(tempSeconds);
+    DOM.minutes.innerText = formatValue(tempMinutes);
+    DOM.seconds.innerText = formatValue(tempSeconds);
     audio[activeTab].currentTime = 0;
     audio[activeTab].play();
     clearInterval(timer);
     return setTimeout(() => {
-      startBtn.disabled = false;
-      minutes.innerText = formatValue(initialMinutes);
-      seconds.innerText = formatValue(initialSeconds);
+      DOM.startButton.disabled = false;
+      DOM.minutes.innerText = formatValue(initialMinutes);
+      DOM.seconds.innerText = formatValue(initialSeconds);
       timer = null;
     }, SOUNDTRACK_PLAYING_TIME);
   }
@@ -67,8 +71,8 @@ function countDown() {
   } else {
     tempSeconds--;
   }
-  minutes.innerText = formatValue(tempMinutes);
-  seconds.innerText = formatValue(tempSeconds);
+  DOM.minutes.innerText = formatValue(tempMinutes);
+  DOM.seconds.innerText = formatValue(tempSeconds);
 }
 
 export const getTimers = inputs => inputs.reduce((accumulator, input) => {
