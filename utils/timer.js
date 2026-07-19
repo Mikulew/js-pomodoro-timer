@@ -5,9 +5,9 @@ import {
   DEFAULT_SOUNDTRACK_PATH,
   SOUNDTRACK_PLAYING_TIME,
   HTML_ELEMENTS
-} from '../consts/index.js';
-import { checkIsLocaleStored } from './validation.js';
-import { getHTMLElement } from './DOM.js';
+} from "../consts/index.js";
+import { checkIsLocaleStored } from "./validation.js";
+import { getHTMLElement } from "./DOM.js";
 
 const DOM = {
   startButton: getHTMLElement(HTML_ELEMENTS.START_BUTTON),
@@ -37,7 +37,7 @@ export const changeTimer = (tab) => {
 
 export const initTimer = () => {
   changeTimer(TABS.POMODORO);
-  DOM.startButton.addEventListener('click', () => (timer === null) ? startTimer() : null);
+  DOM.startButton.addEventListener("click", () => (timer === null) ? startTimer() : null);
 };
 
 const startTimer = () => timer = setInterval(countDown, 1000);
@@ -77,7 +77,7 @@ function countDown() {
 
 export const getTimers = inputs => inputs.reduce((accumulator, input) => {
   const { name, typeDigit } = input.dataset;
-  const value = input.value === '' ? 0 : Number.parseInt(input.value);
+  const value = input.value === "" ? 0 : Number.parseInt(input.value);
   if (accumulator[name] === undefined) accumulator[name] = {};
   if (accumulator[name][typeDigit] === undefined) accumulator[name][typeDigit] = value;
   return accumulator;

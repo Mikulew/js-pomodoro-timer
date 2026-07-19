@@ -3,16 +3,16 @@ import {
   LOCAL_STORAGE_VALUES,
   LEADING_ZEROS,
   HTML_ELEMENTS,
-} from '../consts/index.js';
-import { initTimer } from './timer.js';
-import { initTabs } from './tabs.js';
+} from "../consts/index.js";
+import { initTimer } from "./timer.js";
+import { initTabs } from "./tabs.js";
 import {
   validateAllowedCharacters,
   validateInputs,
   displayErrors,
   checkIsLocaleStored,
-} from './validation.js';
-import { getHTMLElement } from './DOM.js';
+} from "./validation.js";
+import { getHTMLElement } from "./DOM.js";
 
 const DOM = {
   settings: getHTMLElement(HTML_ELEMENTS.SETTINGS),
@@ -30,11 +30,11 @@ const DOM = {
 const inputs = [DOM.pomodoroMinutes, DOM.pomodoroSeconds, DOM.shortBreakMinutes, DOM.shortBreakSeconds, DOM.longBreakMinutes, DOM.longBreakSeconds];
 
 export const initSettings = () => {
-  DOM.settingsButton.addEventListener('click', () => toggleSettings());
+  DOM.settingsButton.addEventListener("click", () => toggleSettings());
 };
 
 const toggleSettings = () => {
-  DOM.settings.classList.toggle('hide');
+  DOM.settings.classList.toggle("hide");
 };
 
 const storeValues = input => {
@@ -43,10 +43,10 @@ const storeValues = input => {
 };
 
 const formatValue = (value) => {
-  if (value === '') {
+  if (value === "") {
     return 0;
   }
-  return value.replace(LEADING_ZEROS, '');
+  return value.replace(LEADING_ZEROS, "");
 };
 
 const setDefaultValue = input => {
@@ -54,12 +54,12 @@ const setDefaultValue = input => {
   return checkIsLocaleStored(name) ? localStorage.getItem(LOCAL_STORAGE_VALUES[name][typeDigit]) : DEFAULT_TIMER_VALUES[name][typeDigit];
 };
 
-DOM.closeButton.addEventListener('click', () => DOM.settings.classList.add('hide'));
+DOM.closeButton.addEventListener("click", () => DOM.settings.classList.add("hide"));
 
-DOM.saveButton.addEventListener('click', () => {
+DOM.saveButton.addEventListener("click", () => {
   if (validateInputs(inputs)) {
     inputs.forEach(input => storeValues(input));
-    DOM.settings.classList.add('hide');
+    DOM.settings.classList.add("hide");
     initTabs();
     initTimer();
   } else {
@@ -67,7 +67,7 @@ DOM.saveButton.addEventListener('click', () => {
   }
 });
 
-DOM.resetSettingsButton.addEventListener('click', () => {
+DOM.resetSettingsButton.addEventListener("click", () => {
   localStorage.clear();
   inputs.forEach(input => {
     const { name, typeDigit } = input.dataset;
@@ -76,6 +76,6 @@ DOM.resetSettingsButton.addEventListener('click', () => {
 });
 
 inputs.forEach(input => {
-  input.addEventListener('keypress', validateAllowedCharacters);
+  input.addEventListener("keypress", validateAllowedCharacters);
   input.value = setDefaultValue(input);
 });

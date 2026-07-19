@@ -76,7 +76,7 @@ body {
   flex: 1 0 30px;
 }
 
-.action-wrapper  {
+.action-wrapper {
   flex: 0 0 100px;
 }
 
@@ -247,7 +247,7 @@ body {
   text-align: center;
 }
 
-@media screen and (max-width: 920px) and (min-width: 769px)  and (orientation: portrait) {
+@media screen and (max-width: 920px) and (min-width: 769px) and (orientation: portrait) {
   .container {
     width: 75vw;
     height: 75vh;

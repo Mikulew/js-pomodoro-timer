@@ -1,11 +1,11 @@
-import { TABS, HTML_ELEMENTS } from '../consts/index.js';
-import { changeTimer } from './timer.js';
-import { getHTMLElement } from './DOM.js';
+import { TABS, HTML_ELEMENTS } from "../consts/index.js";
+import { changeTimer } from "./timer.js";
+import { getHTMLElement } from "./DOM.js";
 
 const tabs = getHTMLElement(HTML_ELEMENTS.TABS);
 
 tabs.forEach((tab, index) => {
-  tab.addEventListener('click', () => handleTabClick(tabs, index));
+  tab.addEventListener("click", () => handleTabClick(tabs, index));
 });
 
 export const initTabs = () => activateTab(tabs, TABS.POMODORO);
@@ -27,16 +27,16 @@ export const handleTabClick = (elements, index) => {
       changeTimer(TABS.LONG_BREAK);
       break;
     default:
-      console.warn('Unsupported tab.');
+      console.warn("Unsupported tab.");
   }
 };
 
 function activateTab(elements, tab) {
   elements.forEach(element => {
     if (element.dataset.tab === tab) {
-      element.classList.add('selected');
+      element.classList.add("selected");
     } else {
-      element.classList.remove('selected')
+      element.classList.remove("selected")
     }
   });
 }
