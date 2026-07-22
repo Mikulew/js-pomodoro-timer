@@ -1,6 +1,6 @@
 import { TABS, HTML_ELEMENTS } from "../consts/index.js";
 import { changeTimer } from "./timer.js";
-import { getHTMLElement } from "./DOM.js";
+import { getHTMLElement } from "./dom.js";
 
 const tabs = getHTMLElement(HTML_ELEMENTS.TABS);
 

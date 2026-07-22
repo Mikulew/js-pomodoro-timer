@@ -7,7 +7,7 @@ import {
   HTML_ELEMENTS
 } from "../consts/index.js";
 import { checkIsLocaleStored } from "./validation.js";
-import { getHTMLElement } from "./DOM.js";
+import { getHTMLElement } from "./dom.js";
 
 const DOM = {
   startButton: getHTMLElement(HTML_ELEMENTS.START_BUTTON),

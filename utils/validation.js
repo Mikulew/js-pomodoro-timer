@@ -4,7 +4,7 @@ import {
   HTML_ELEMENTS,
 } from "../consts/index.js";
 import { getTimers } from "./timer.js";
-import { getHTMLElement } from "./DOM.js";
+import { getHTMLElement } from "./dom.js";
 
 const errorMessage = getHTMLElement(HTML_ELEMENTS.ERROR_MESSAGE);
 let errors = [];

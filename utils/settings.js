@@ -12,7 +12,7 @@ import {
   displayErrors,
   checkIsLocaleStored,
 } from "./validation.js";
-import { getHTMLElement } from "./DOM.js";
+import { getHTMLElement } from "./dom.js";
 
 const DOM = {
   settings: getHTMLElement(HTML_ELEMENTS.SETTINGS),
