@@ -21,23 +21,55 @@ const audio = Object.entries(DEFAULT_SOUNDTRACK_PATH).reduce((result, [tab, path
 let timer = null;
 let initialMinutes = null;
 let initialSeconds = null;
-let activeTab = TABS.POMODORO;
+
+const state = {
+  activeTab: TABS.POMODORO,
+  timer: {
+    current: {
+      minutes: null,
+      seconds: null,
+    },
+    initial: {
+      minutes: null,
+      seconds: null,
+    },
+  },
+};
 
 const formatValue = (number) => number < 10 ? `0${number}` : number;
 
-export const changeTimer = (tab) => {
+const renderTimer = () => {
+  DOM.minutes.textContent = formatValue(state.timer.current.minutes);
+  DOM.seconds.textContent = formatValue(state.timer.current.seconds);
+};
+
+export const loadTimerState = () => {
+  const tab = state.activeTab;
   const hasLocaleStorage = checkIsLocaleStored(tab);
-  DOM.minutes.innerText = hasLocaleStorage ? formatValue(localStorage.getItem(LOCAL_STORAGE_VALUES[tab].minutes)) : formatValue(DEFAULT_TIMER_VALUES[tab].minutes);
-  DOM.seconds.innerText = hasLocaleStorage ? formatValue(localStorage.getItem(LOCAL_STORAGE_VALUES[tab].seconds)) : formatValue(DEFAULT_TIMER_VALUES[tab].seconds);
-  initialMinutes = hasLocaleStorage ? localStorage.getItem(LOCAL_STORAGE_VALUES[tab].minutes) : DEFAULT_TIMER_VALUES[tab].minutes;
-  initialSeconds = hasLocaleStorage ? localStorage.getItem(LOCAL_STORAGE_VALUES[tab].seconds) : DEFAULT_TIMER_VALUES[tab].seconds;
-  activeTab = tab;
+  const timer = hasLocaleStorage
+    ? {
+        minutes: Number(localStorage.getItem(LOCAL_STORAGE_VALUES[tab].minutes)),
+        seconds: Number(localStorage.getItem(LOCAL_STORAGE_VALUES[tab].seconds)),
+      }
+    : DEFAULT_TIMER_VALUES[tab];
+  state.timer.current = { ...timer };
+  state.timer.initial = { ...timer };
+};
+
+export const changeTimer = (tab) => {
+  state.activeTab = tab;
+  loadTimerState();
+  renderTimer();
   restartTimer();
 };
 
 export const initTimer = () => {
-  changeTimer(TABS.POMODORO);
+  changeTimer(state.activeTab);
   DOM.startButton.addEventListener("click", () => (timer === null) ? startTimer() : null);
+};
+
+export const refreshCurrentTimer = () => {
+  changeTimer(state.activeTab);
 };
 
 const startTimer = () => timer = setInterval(countDown, 1000);
@@ -48,31 +80,28 @@ const restartTimer = () => {
   timer = null;
 };
 
-function countDown() {
-  let tempMinutes = Number.parseInt(minutes.innerText);
-  let tempSeconds = Number.parseInt(seconds.innerText);
+const countDown = () => {
+  let current = state.timer.current;
   DOM.startButton.disabled = true;
-  if (tempMinutes === 0 && tempSeconds === 0) {
-    DOM.minutes.innerText = formatValue(tempMinutes);
-    DOM.seconds.innerText = formatValue(tempSeconds);
-    audio[activeTab].currentTime = 0;
-    audio[activeTab].play();
+  if (current.minutes === 0 && current.seconds === 0) {
+    renderTimer();
+    playAudio();
     clearInterval(timer);
     return setTimeout(() => {
       DOM.startButton.disabled = false;
-      DOM.minutes.innerText = formatValue(initialMinutes);
-      DOM.seconds.innerText = formatValue(initialSeconds);
+      changeTimer(state.activeTab);
+      DOM.minutes.innerText = formatValue(state.timer.initial.minutes);
+      DOM.seconds.innerText = formatValue(state.timer.initial.seconds);
       timer = null;
     }, SOUNDTRACK_PLAYING_TIME);
   }
-  if (tempSeconds === 0) {
-    tempSeconds = 59;
-    tempMinutes--;
+  if (current.seconds === 0) {
+    current.seconds = 59;
+    current.minutes--; 
   } else {
-    tempSeconds--;
+    current.seconds--;
   }
-  DOM.minutes.innerText = formatValue(tempMinutes);
-  DOM.seconds.innerText = formatValue(tempSeconds);
+  renderTimer();
 }
 
 export const getTimers = inputs => inputs.reduce((accumulator, input) => {
@@ -82,3 +111,8 @@ export const getTimers = inputs => inputs.reduce((accumulator, input) => {
   if (accumulator[name][typeDigit] === undefined) accumulator[name][typeDigit] = value;
   return accumulator;
 }, {});
+
+const playAudio = () => {
+    audio[state.activeTab].currentTime = 0;
+    audio[state.activeTab].play();
+};

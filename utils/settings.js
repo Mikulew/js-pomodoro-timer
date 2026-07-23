@@ -4,7 +4,7 @@ import {
   LEADING_ZEROS,
   HTML_ELEMENTS,
 } from "../consts/index.js";
-import { initTimer } from "./timer.js";
+import { initTimer, refreshCurrentTimer } from "./timer.js";
 import { initTabs } from "./tabs.js";
 import {
   validateAllowedCharacters,
@@ -60,8 +60,7 @@ DOM.saveButton.addEventListener("click", () => {
   if (validateInputs(inputs)) {
     inputs.forEach(input => storeValues(input));
     DOM.settings.classList.add("hide");
-    initTabs();
-    initTimer();
+    refreshCurrentTimer();
   } else {
     displayErrors();
   }
@@ -73,6 +72,7 @@ DOM.resetSettingsButton.addEventListener("click", () => {
     const { name, typeDigit } = input.dataset;
     input.value = DEFAULT_TIMER_VALUES[name][typeDigit];
   });
+  refreshCurrentTimer();
 });
 
 inputs.forEach(input => {
