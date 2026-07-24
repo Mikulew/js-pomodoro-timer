@@ -1,7 +1,3 @@
-import { initTimer } from "./utils/timer.js";
-import { initTabs } from "./utils/tabs.js";
-import { initSettings } from "./utils/settings.js";
+import { initApp } from "./utils/app.js";
 
-initTabs();
-initTimer();
-initSettings();
+initApp();

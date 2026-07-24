@@ -30,11 +30,20 @@ const DOM = {
 const inputs = [DOM.pomodoroMinutes, DOM.pomodoroSeconds, DOM.shortBreakMinutes, DOM.shortBreakSeconds, DOM.longBreakMinutes, DOM.longBreakSeconds];
 
 export const initSettings = () => {
-  DOM.settingsButton.addEventListener("click", () => toggleSettings());
+  DOM.settingsButton.addEventListener("click", toggleSettings);
+  DOM.closeButton.addEventListener("click", handleClose);
+  DOM.saveButton.addEventListener("click", handleSave);
+  DOM.resetSettingsButton.addEventListener("click", handleReset);
+  setupInputs();
 };
 
-const toggleSettings = () => {
-  DOM.settings.classList.toggle("hide");
+const toggleSettings = () => DOM.settings.classList.toggle("hide");
+
+const setupInputs = () => {
+  inputs.forEach(input => {
+      input.addEventListener("keypress", validateAllowedCharacters);
+      input.value = setDefaultValue(input);
+    });
 };
 
 const storeValues = input => {
@@ -54,9 +63,9 @@ const setDefaultValue = input => {
   return checkIsLocaleStored(name) ? localStorage.getItem(LOCAL_STORAGE_VALUES[name][typeDigit]) : DEFAULT_TIMER_VALUES[name][typeDigit];
 };
 
-DOM.closeButton.addEventListener("click", () => DOM.settings.classList.add("hide"));
+const handleClose = () => DOM.settings.classList.add("hide");
 
-DOM.saveButton.addEventListener("click", () => {
+const handleSave = () => {
   if (validateInputs(inputs)) {
     inputs.forEach(input => storeValues(input));
     DOM.settings.classList.add("hide");
@@ -64,18 +73,14 @@ DOM.saveButton.addEventListener("click", () => {
   } else {
     displayErrors();
   }
-});
+};
 
-DOM.resetSettingsButton.addEventListener("click", () => {
+const handleReset = () => {
   localStorage.clear();
   inputs.forEach(input => {
     const { name, typeDigit } = input.dataset;
     input.value = DEFAULT_TIMER_VALUES[name][typeDigit];
   });
   refreshCurrentTimer();
-});
+};
 
-inputs.forEach(input => {
-  input.addEventListener("keypress", validateAllowedCharacters);
-  input.value = setDefaultValue(input);
-});
