@@ -4,11 +4,12 @@ import { getHTMLElement } from "./dom.js";
 
 const tabs = getHTMLElement(HTML_ELEMENTS.TABS);
 
-tabs.forEach((tab, index) => {
-  tab.addEventListener("click", () => handleTabClick(tabs, index));
-});
-
-export const initTabs = () => activateTab(tabs, TABS.POMODORO);
+export const initTabs = () => {
+  tabs.forEach((tab, index) => {
+    tab.addEventListener("click", () => handleTabClick(tabs, index));
+  });
+  activateTab(tabs, TABS.POMODORO);
+};
 
 export const handleTabClick = (elements, index) => {
   const element = elements[index];
@@ -31,7 +32,7 @@ export const handleTabClick = (elements, index) => {
   }
 };
 
-function activateTab(elements, tab) {
+const activateTab = (elements, tab) => {
   elements.forEach(element => {
     if (element.dataset.tab === tab) {
       element.classList.add("selected");
