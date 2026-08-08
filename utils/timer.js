@@ -14,17 +14,16 @@ const DOM = {
   minutes: getHTMLElement(HTML_ELEMENTS.MINUTES_BLOCK),
   seconds: getHTMLElement(HTML_ELEMENTS.SECONDS_BLOCK),
 };
+
 const audio = Object.entries(DEFAULT_SOUNDTRACK_PATH).reduce((result, [tab, path]) => {
   result[tab] = new Audio(path);
   return result;
 }, {});
-let timer = null;
-let initialMinutes = null;
-let initialSeconds = null;
 
 const state = {
+  timer: null,
   activeTab: TABS.POMODORO,
-  timer: {
+  time: {
     current: {
       minutes: null,
       seconds: null,
@@ -39,21 +38,22 @@ const state = {
 const formatValue = (number) => number < 10 ? `0${number}` : number;
 
 const renderTimer = () => {
-  DOM.minutes.textContent = formatValue(state.timer.current.minutes);
-  DOM.seconds.textContent = formatValue(state.timer.current.seconds);
+  DOM.minutes.textContent = formatValue(state.time.current.minutes);
+  DOM.seconds.textContent = formatValue(state.time.current.seconds);
 };
 
 export const loadTimerState = () => {
   const tab = state.activeTab;
   const hasLocaleStorage = checkIsLocaleStored(tab);
-  const timer = hasLocaleStorage
+  const time = hasLocaleStorage
     ? {
         minutes: Number(localStorage.getItem(LOCAL_STORAGE_VALUES[tab].minutes)),
         seconds: Number(localStorage.getItem(LOCAL_STORAGE_VALUES[tab].seconds)),
       }
     : DEFAULT_TIMER_VALUES[tab];
-  state.timer.current = { ...timer };
-  state.timer.initial = { ...timer };
+
+  state.time.current = { ...time };
+  state.time.initial = { ...time };
 };
 
 export const changeTimer = (tab) => {
@@ -65,41 +65,41 @@ export const changeTimer = (tab) => {
 
 export const initTimer = () => {
   changeTimer(state.activeTab);
-  DOM.startButton.addEventListener("click", () => (timer === null) ? startTimer() : null);
+  DOM.startButton.addEventListener("click", () => (state.timer === null) ? startTimer() : null);
 };
 
 export const refreshCurrentTimer = () => {
   changeTimer(state.activeTab);
 };
 
-const startTimer = () => timer = setInterval(countDown, 1000);
+const startTimer = () => state.timer = setInterval(countDown, 1000);
 
 const restartTimer = () => {
   DOM.startButton.disabled = false;
-  clearInterval(timer);
-  timer = null;
+  clearInterval(state.timer);
+  state.timer = null;
 };
 
 const countDown = () => {
-  let current = state.timer.current;
+  let currentTime = state.time.current;
   DOM.startButton.disabled = true;
-  if (current.minutes === 0 && current.seconds === 0) {
+  if (currentTime.minutes === 0 && currentTime.seconds === 0) {
     renderTimer();
     playAudio();
-    clearInterval(timer);
+    clearInterval(state.timer);
     return setTimeout(() => {
       DOM.startButton.disabled = false;
       changeTimer(state.activeTab);
-      DOM.minutes.innerText = formatValue(state.timer.initial.minutes);
-      DOM.seconds.innerText = formatValue(state.timer.initial.seconds);
-      timer = null;
+      DOM.minutes.innerText = formatValue(state.time.initial.minutes);
+      DOM.seconds.innerText = formatValue(state.time.initial.seconds);
+      state.timer = null;
     }, SOUNDTRACK_PLAYING_TIME);
   }
-  if (current.seconds === 0) {
-    current.seconds = 59;
-    current.minutes--; 
+  if (currentTime.seconds === 0) {
+    currentTime.seconds = 59;
+    currentTime.minutes--; 
   } else {
-    current.seconds--;
+    currentTime.seconds--;
   }
   renderTimer();
 }
