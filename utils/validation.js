@@ -30,13 +30,14 @@ export const displayErrors = () => {
   while (errorMessage.lastElementChild) {
     errorMessage.removeChild(errorMessage.lastElementChild);
   }
-  errors.forEach(error => {
-    let element = document.createElement("p");
-    element.innerText = error;
-    errorMessage.appendChild(element);
-  });
+  errors.forEach(error => displayError(error));
 };
 
+const displayError = (text) => {
+  let element = document.createElement("p");
+  element.innerText = error;
+  errorMessage.appendChild(element);
+};
 
 export const validateAllowedCharacters = e => {
   if (NOT_ALLOWED_CHARACTERS.includes(e.key)) {
@@ -45,4 +46,4 @@ export const validateAllowedCharacters = e => {
   return null;
 };
 
-export const checkIsLocaleStored = (name) => (localStorage.getItem(LOCAL_STORAGE_VALUES[name].minutes) !== null) && (localStorage.getItem(LOCAL_STORAGE_VALUES[name].seconds) !== null);
+export const checkIsLocaleStored = name => (localStorage.getItem(LOCAL_STORAGE_VALUES[name].minutes) !== null) && (localStorage.getItem(LOCAL_STORAGE_VALUES[name].seconds) !== null);
